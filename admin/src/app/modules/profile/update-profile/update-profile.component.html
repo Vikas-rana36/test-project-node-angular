@@ -1,0 +1,54 @@
+<style>
+    .delete-btn {
+        display: block;
+        text-align: right;
+        width: 100%;
+    }
+    .delete-btn-wrap {
+        display: inline-block;
+    }
+</style>
+<mk-box  [isLoading]="false" [isCollapsed]="isCollapsed" [isCollapsable]="false" [isRemovable]="false">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="box-body">    
+            <div class="form-group col-6">        
+                <label>First Name*</label>
+                <input formControlName="first_name" class="form-control" type="text" placeholder="First Name">  
+                <p class="errorCls" *ngIf="formRef['first_name'].touched || isFormSubmitted">
+                    <app-form-validation-errors errorPrefix="First Name " [errors]="formRef['first_name'].errors || []"></app-form-validation-errors>
+                </p>
+            </div>
+
+            <div class="form-group col-6">        
+                <label>Last Name*</label>
+                <input formControlName="last_name" class="form-control" type="text" placeholder="Last Name">  
+                <p class="errorCls" *ngIf="formRef['last_name'].touched || isFormSubmitted">
+                    <app-form-validation-errors errorPrefix="Last Name " [errors]="formRef['last_name'].errors || []"></app-form-validation-errors>
+                </p>
+            </div>
+
+            <div class="form-group col-6">
+                <label>Upload Profile Photo*</label>
+                <ngx-dropzone [expandable]="true" [accept]="'image/*'" [multiple]="false" (change)="onFileSelect($event)">
+                    <ngx-dropzone-label>
+                        <p>Drop files here <span>(or click to upload)</span></p>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let file of files" [file]="file" [removable]="true" (removed)="onFileRemove(file)" [ngStyle]="{'display':styleNewImage}">
+                        <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+                    </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+    
+                <div [ngStyle]="{'display':styleAlreadyUploadedImage}" style="margin-top: 15px;">
+                    <div class="delete-btn-wrap">
+                        <span (click)="removeAlreadyUploadedFile()" class="delete-btn">X</span>
+                        <img [src]="uploadedImage" width="250" height="150">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box-footer">     
+                <button type="submit" [disabled]="!profileForm.valid || fileNotUploaded" class="btn btn-primary">{{formStatus}}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>     
+        </div>       
+    </form>
+</mk-box>

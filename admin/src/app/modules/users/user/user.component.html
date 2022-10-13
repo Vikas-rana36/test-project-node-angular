@@ -1,0 +1,140 @@
+<!-- Listing Data-->
+<style>
+    .text-end {
+    text-align: right;
+    margin-bottom: 15px;
+}
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="text-end">
+        <button (click)="exportToExcel()" class="btn btn-primary">Export to excel</button>
+        </div>
+
+        <div id="sticky-anchor"></div>
+        <!-- listing will start here-->
+        <div class="card table-responsive" id="dataTable">
+            <ngx-datatable #myTable class="material ngx-datatable expandable" [rows]="tableData" [loadingIndicator]="loadingIndicator"
+                [columnMode]="'standard'" [headerHeight]="100" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true"
+                [limit]="itemsPerPage" ngx-resize-watcher>      
+                <ng-container *ngFor="let col of columns | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalRecords }">
+                <ngx-datatable-column *ngIf="col.visible" [name]="col.name" [prop]="col.prop"
+                    [width]="col.width" [sortable]="col.sortable">
+
+                    <ng-template let-row="row" let-rowIndex="rowIndex" let-value="value"
+                    ngx-datatable-cell-template>    
+                                              
+                        <span *ngIf="col.prop != 'is_active'">
+                        {{value}}
+                        </span>
+                        <span *ngIf="tableData[0] && !tableData[0]['message'] && col.prop === 'is_active' ">	
+                            <label class="switch">
+                                <input type="checkbox" [checked]="value" (change)="onChaneStatus($event, row)">
+                                <span class="slider round"></span>
+                            </label>			
+                        </span>                      
+                    </ng-template>
+                    <ng-template let-column="column" let-sort="sortFn" let-value="value"
+                    ngx-datatable-header-template>
+                        <span class="datatable-header-cell-wrapper float-left">
+                            <span class="datatable-header-cell-label draggable" (click)="sort()">
+                                {{col.name}}
+                            </span>
+                        </span>
+
+                        <!-- Search box for select_gender type-->
+                        <div class="input-group float-right" *ngIf="col.type == 'select_gender' && col.prop != 'Action' && col.prop != 'is_active'">
+                            <select [id]="col.prop" name="col.prop" class="form-control bg-gray" tabindex="-1" (change)='filterData($event, "select_gender")'>
+                                <option value="">--Select--</option>
+                                <option value="male">Male</option>                
+                                <option value="female">Female</option>                      
+                            </select> 
+                            <span class="input-group-btn" *ngIf="col.value">
+                                <a class="dataTable-cross" (click)="clearSearch(col.prop);" href="javascript:void(0);">
+                                    <i class="fa fa-times suffex cross"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <!--End-->
+                        <!-- Search box for select_org type-->
+                        <div class="input-group float-right" *ngIf="col.type == 'select_org' && col.prop != 'Action' && col.prop != 'is_active'">
+                            <select [id]="col.prop" name="col.prop" class="form-control bg-gray" tabindex="-1" (change)='filterData($event, "select")'>
+                                <!-- <option value="">--Select--</option> -->
+                                <option value="">All</option>
+                                <option *ngFor="let organization of organizations" value="{{organization._id}}">{{organization?.name}}</option>      
+                            </select> 
+                            <span class="input-group-btn" *ngIf="col.value">
+                                <a class="dataTable-cross" (click)="clearSearch(col.prop);" href="javascript:void(0);">
+                                    <i class="fa fa-times suffex cross"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <!--End-->
+                        <!-- Search box for text type-->
+                        <div class="input-group float-right" *ngIf="col.type != 'date' && col.type != 'select_gender' && col.type != 'select_org' && col.prop != 'Action' && col.prop != 'is_active'">
+                            <input type='text' [id]="col.prop" name="col.prop" class="form-control bg-gray"
+                                tabindex="-1" placeholder="Search" (keyup)='filterData($event, "text")'
+                                [(ngModel)]="filterObj[col.prop]" [ngModelOptions]="{standalone: true}" />
+                            <span class="input-group-btn" *ngIf="filterObj[col.prop]">
+                                <a class="dataTable-cross" (click)="clearSearch(col.prop);"
+                                href="javascript:void(0);">
+                                    <i class="fa fa-times suffex cross"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <!--End-->
+                        <!-- Search box for date type-->
+                        <div class="input-group float-right" *ngIf="col.type =='date'">
+                            <input [owlDateTimeTrigger]="dt" class="form-control t-search-tb" tabindex="-1"
+                                placeholder="Select Date" [id]="col.prop" [owlDateTime]="dt"
+                                (dateTimeChange)='filterData($event,"date")' readonly="true"
+                                [(ngModel)]="col.value" [ngModelOptions]="{standalone: true}">
+                            <span [owlDateTimeTrigger]="dt"><i class="fa fa-calendar"></i></span>
+                            <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+                            <span class="input-group-btn" *ngIf="col.value">
+                                <a class="dataTable-cross" (click)="clearSearch(col.prop);"
+                                    href="javascript:void(0);">
+                                    <i class="fa fa-times suffex cross"></i>
+                                </a>
+                            </span>
+                        </div>
+                        <!--End-->
+                        <!-- Selected All checkbox  -->
+                        <div class="input-group float-right" *ngIf="col.prop =='Action'">
+                            <div class="form-check form-check-inline">
+                                <!--input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)" /-->
+                                
+                                <label _ngcontent-c14="" class="form-check-label" for="inlineCheckbox_Action">All</label>
+                            </div>
+                        </div>
+                        <!--End-->
+                    </ng-template>
+                </ngx-datatable-column>
+            </ng-container>      
+                <ngx-datatable-footer>
+                <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+                    let-selectedCount="selectedCount" let-curPage="curPage" let-offset="offset">
+                    <div style="padding: 5px 10px; width: 100%; flex: 1;">                
+                    <div>
+                        Showing {{start==null?1:start }} - {{last==null?10:last}} of Total: {{totalRecords}}     
+                    </div>
+                    </div>
+                    <!-- <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'"
+                    [pagerPreviousIcon]="'datatable-icon-prev'" [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage"
+                    [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)"
+                    (change)="myTable.onFooterPage($event)">
+                    </datatable-pager>
+                    <div style="padding: 5px 10px" class="ml-auto" [hidden]="noRecords"
+                    *ngIf="totalRecords !== filteredItems?.length">
+                        <div>
+                            <button class="btn btn-sm" (click)="loadMoreRecords()">Load More</button>
+                        </div>
+                    </div> -->
+                    <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                </ng-template>
+                </ngx-datatable-footer>
+            </ngx-datatable>
+        </div>
+    </div>
+</div>
+<!-- End-->

@@ -1,0 +1,29 @@
+<div class="navbar-custom-menu">
+  <ul class="nav navbar-nav">
+    
+    <li mk-dropdown type="list" [isWrapper]="false" class="user user-menu">
+      <mk-dropdown-toggle>
+        <a #toggleElement>         
+          <img src="{{adminData?.profile_pic}}" onerror="this.src='/assets/img/avatar5.png'" class="user-image" alt="User Image">
+          <span class="hidden-xs">{{adminData?.first_name}} {{adminData?.last_name}}</span>
+        </a>
+      </mk-dropdown-toggle>
+      <mk-dropdown-menu>
+        <li class="user-header">
+          <img src="{{adminData?.profile_pic}}" onerror="this.src='/assets/img/avatar5.png'" class="img-circle" alt="User Image">
+        
+
+          <p>
+            {{adminData?.first_name}} {{adminData?.last_name}}    
+          </p>
+        </li>       
+        <li class="user-footer">
+          
+          <div style="text-align:center;" >
+            <a href="javascript:void(0)" (click)="logout()" class="btn btn-danger btn-flat">Sign out</a>
+          </div>
+        </li>
+      </mk-dropdown-menu>
+    </li>
+  </ul>
+</div>

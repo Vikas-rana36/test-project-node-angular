@@ -1,0 +1,39 @@
+
+.readMore {
+  display: -webkit-inline-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-size: '100%';
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 85%;
+}
+
+.pull-left.readMore.isCollasped {
+  display: inline-block!important;
+  width: 100%;
+  white-space: normal;
+}
+
+/* .readMore {
+    margin-top: -3px !important;
+    line-height: 1.4 !important;
+}
+
+.isCollapsed {
+    width: 85%;
+}
+
+.cb {
+    clear: both;
+    height: 0;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+} */

@@ -1,0 +1,19 @@
+{
+    "name": "Sync Health API - development",
+    "debug": "true",
+    "port": "3000", 
+     "dataEmpty": [],
+     "emptyValidationsErrors": [],
+    "fromMail": "donot@trigma.in",
+    "linkSubject": "Link Verification",
+   "approveAccountUrl": "http://localhost:5000/api/getapprove",
+   "hostEmailSmpt": "email-smtp.us-east-1.amazonaws.com",
+   "portEmailSmtp": "465",
+    "userEmailSmpt": "AKIAZ4LT5NDXUGG5BV6J",
+    "passwordEmailSmpt": "BKWLle8gziPju35ASVwkTRw0ppiP3IQYZe7RpblEptim",
+    "database": {      
+        "name": "syncHealth",
+        "user": "",
+        "pass": ""
+    }
+}

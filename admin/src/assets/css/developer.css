@@ -1,0 +1,159 @@
+app-form-validation-errors{
+    color:red
+}
+.bg-gray, .t-search-tb {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #dfe3e9;
+    background: #e4e9f5 !important;
+    color: #495057;
+    opacity: 1;
+    border-radius: 3px;
+}
+.table-action{
+    display: flex;
+    align-items: center;
+}
+.main-header .logo {
+  height: 70px;
+  line-height: 70px;
+}
+.main-sidebar {
+  padding-top: 80px;
+}
+body .main-sidebar .user-panel {
+  overflow: visible;
+}
+.custom {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.cst-w100 .iti {
+  width: 100%;
+}
+
+
+
+
+.datatable-header-cell-template-wrap .input-group input {padding-right: 35px;}
+
+.datatable-header-cell-template-wrap .input-group span.input-group-btn i {
+    font-size: 12px;
+    color: #1a2226;
+}
+
+.datatable-header-cell-template-wrap input + span {
+    position: absolute;
+    right: 10px;
+    width: 35px;
+    text-align: center;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.submit-btn-disable{
+    cursor:not-allowed;
+}
+.datatable-header-cell-wrapper{
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.action-icon{
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+
+/* Switbh button css 
+*/
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  .sidebar-right-toggle{
+    display: none !important;
+}
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  .delete-multiple{
+    padding-bottom: 5px;
+    float: right;
+  }
+  .sort-btn{
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .breadcrumb{
+    display:none;
+  }
+/* Ends Here*/  

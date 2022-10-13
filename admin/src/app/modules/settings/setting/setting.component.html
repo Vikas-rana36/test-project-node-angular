@@ -1,0 +1,71 @@
+<mk-box  [isLoading]="false" [isCollapsed]="isCollapsed" [isCollapsable]="false" [isRemovable]="false">
+    <form [formGroup]="settingForm" (ngSubmit)="onSubmit()">
+        <div class="box-body">    
+            <div class="row col-lg-12 form-group">    
+                <div class="form-group col-6">        
+                    <label>Terms & conditions*</label>
+                    <ckeditor #editor rows="20" tagName="textarea" name="text" formControlName="terms_and_conditions">                   
+                    </ckeditor>
+                    <p class="errorCls" *ngIf="formRef['terms_and_conditions'].touched || isFormSubmitted">
+                        <app-form-validation-errors errorPrefix="Terms & conditions " [errors]="formRef['terms_and_conditions'].errors || []"></app-form-validation-errors>
+                    </p>
+                </div>
+
+                <div class="form-group col-6">        
+                    <label>Introduction Content*</label>
+                    <ckeditor #editor tagName="textarea" name="text" formControlName="introduction_content">                   
+                    </ckeditor>
+                    <p class="errorCls" *ngIf="formRef['introduction_content'].touched || isFormSubmitted">
+                        <app-form-validation-errors errorPrefix="Introduction Content " [errors]="formRef['introduction_content'].errors || []"></app-form-validation-errors>
+                    </p>
+                </div>
+            </div>
+            <div class="row col-lg-12 form-group">   
+                <div class="form-group col-6">        
+                    <label>FAS Results Explanation*</label>
+                    <ckeditor #editor tagName="textarea" name="text" formControlName="FAS_results_explanation">                   
+                    </ckeditor>
+                    <p class="errorCls" *ngIf="formRef['FAS_results_explanation'].touched || isFormSubmitted">
+                        <app-form-validation-errors errorPrefix="FAS Results Explanation " [errors]="formRef['FAS_results_explanation'].errors || []"></app-form-validation-errors>
+                    </p>
+                </div>    
+
+                <div  class="form-group col-6">        
+                    <label>Introduction For Discovery*</label>
+                    <ckeditor #editor tagName="textarea" name="text" formControlName="introduction_for_discovery">                   
+                    </ckeditor>
+                    <p class="errorCls" *ngIf="formRef['introduction_for_discovery'].touched || isFormSubmitted">
+                        <app-form-validation-errors errorPrefix="Introduction For Discovery " [errors]="formRef['introduction_for_discovery'].errors || []"></app-form-validation-errors>
+                    </p>
+                </div> 
+            </div>
+            <div class="row col-lg-12 form-group">
+                <div class="form-group col-6">        
+                    <label>Introduction To Plan*</label>
+                    <ckeditor #editor tagName="textarea" name="text" formControlName="introduction_to_plan">                   
+                    </ckeditor>
+                    <p class="errorCls" *ngIf="formRef['introduction_to_plan'].touched || isFormSubmitted">
+                        <app-form-validation-errors errorPrefix="Introduction To Plan " [errors]="formRef['introduction_to_plan'].errors || []"></app-form-validation-errors>
+                    </p>
+                </div>    
+
+                <div class="form-group col-6">            
+                    <label>Activate Subscriptions</label>
+                    <select formControlName="is_activate_subscriptions" class="form-control">
+                        <option value="true">Yes</option> 
+                        <option value="false">No</option>
+                    </select> 
+                </div>
+            </div>       
+            
+            <div class="box-footer">     
+                <button type="submit" [disabled]="!settingForm.valid" class="btn btn-primary">{{formStatus}}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- <button  type="button" (click)="cancel()" class="btn btn-danger">Cancel</button> -->
+            </div>     
+        </div>
+       
+        <!-- /.box-body -->
+       
+    </form>
+    <!-- End Here-->
+</mk-box>

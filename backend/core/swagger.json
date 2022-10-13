@@ -1,0 +1,18 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "My User Project CRUD",
+      "description": "My User Project Application API"
+    },
+    "host": "localhost:5000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "User",
+        "description": "API for users in the system"
+      }
+    ],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+  }
