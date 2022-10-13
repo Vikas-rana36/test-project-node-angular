@@ -1,7 +1,7 @@
 # synchealth-admin-backendapis
 
 First take a clone from the repository with terminal or git bash
-# git clone https://github.com/Vikas-rana36/synchealth-admin-backendapis.git
+# git clone https://github.com/Vikas-rana36/synchealth-node-angular.git
 
 Open both folders admin and backend-apis in visual studio code and run command in terminal
  #npm i for both the folders
