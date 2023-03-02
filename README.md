@@ -1,4 +1,4 @@
-# synchealth-admin-backendapis
+# test-admin-backendapis
 
 First take a clone from the repository with terminal or git bash
 # git clone https://github.com/Vikas-rana36/synchealth-node-angular.git
